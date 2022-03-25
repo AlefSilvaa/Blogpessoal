@@ -30,7 +30,7 @@ public class Postagem {
 	private String texto;
 	
 	@UpdateTimestamp
-	private LocalDate data;
+	private LocalDate data; //Aqui
 
 	public Long getId() {
 		return id;
@@ -56,11 +56,11 @@ public class Postagem {
 		this.texto = texto;
 	}
 
-	public LocalDate getData() {
+	public LocalDate getData() { //Aqui
 		return data;
 	}
 
-	public void setData(LocalDate data) {
+	public void setData(LocalDate data) { //Aqui
 		this.data = data;
 	}
 	
