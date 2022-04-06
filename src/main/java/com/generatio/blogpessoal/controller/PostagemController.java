@@ -23,14 +23,14 @@ import com.generatio.blogpessoal.repository.TemaRepository;
 
 @RestController
 @RequestMapping("/postagens")
-@CrossOrigin(origins = "*", allowedHeaders = "*") // Sem isso Front e Back não se conectam
+@CrossOrigin(origins = "*", allowedHeaders = "*") //Sem isso Front e Back não se conectam
 public class PostagemController {
 
 	@Autowired
-	private PostagemRepository postagemRepository; // Faz tudo ai...
+	private PostagemRepository postagemRepository; //Faz tudo ai...
 	
 	@Autowired
-	private TemaRepository temaRepository; // sehumda
+	private TemaRepository temaRepository;
 
 	@GetMapping
 	public ResponseEntity<List<Postagem>> getAll() {
@@ -39,7 +39,7 @@ public class PostagemController {
 		// SELECT * FROM tb_postagen;
 	}
 
-	@GetMapping("/{id}") // Precisa disso para puxar a variavel do getmapping = id
+	@GetMapping("/{id}") //Precisa disso para puxar a variavel do getmapping = id
 	public ResponseEntity<Postagem> getById(@PathVariable Long id) {
 		return postagemRepository.findById(id)
 				.map(resposta -> ResponseEntity.ok(resposta))
