@@ -26,12 +26,13 @@ import com.generatio.blogpessoal.repository.TemaRepository;
 @CrossOrigin(origins = "*", allowedHeaders = "*") //Sem isso Front e Back não se conectam
 public class PostagemController {
 
+	
 	@Autowired
-	private PostagemRepository postagemRepository; //Faz tudo ai...
+	private PostagemRepository postagemRepository; 
 	
 	@Autowired
 	private TemaRepository temaRepository;
-
+	
 	@GetMapping
 	public ResponseEntity<List<Postagem>> getAll() {
 		return ResponseEntity.ok(postagemRepository.findAll());
