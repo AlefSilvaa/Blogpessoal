@@ -24,47 +24,43 @@ import com.generatio.blogpessoal.repository.TemaRepository;
 @RequestMapping("/temas")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TemaController {
-
+	
 	@Autowired
 	private TemaRepository temaRepository;
-
+	
 	@GetMapping
 	public ResponseEntity<List<Tema>> getAll() {
 		return ResponseEntity.ok(temaRepository.findAll());
-
 	}
-
+	
 	@GetMapping("/{id}")
 	public ResponseEntity<Tema> getById(@PathVariable Long id) {
 		return temaRepository.findById(id)
-			.map(resposta -> ResponseEntity.ok(resposta))
-			.orElse(ResponseEntity.notFound().build());
+				.map(resposta -> ResponseEntity.ok(resposta))
+				.orElse(ResponseEntity.notFound().build());
 	}
-
+	
 	@GetMapping("/descricao/{descricao}")
 	public ResponseEntity<List<Tema>> getByDescricao(@PathVariable String descricao) {
 		return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
-
+	
 	@PostMapping
 	public ResponseEntity<Tema> postTema(@Valid @RequestBody Tema tema) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(temaRepository.save(tema));
 	}
-
+	
 	@PutMapping
 	public ResponseEntity<Tema> putTema(@Valid @RequestBody Tema tema) {
-					
 		return temaRepository.findById(tema.getId())
 				.map(resposta -> {
 					return ResponseEntity.ok().body(temaRepository.save(tema));
 				})
 				.orElse(ResponseEntity.notFound().build());
-
 	}
-
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<?> deletePostagem(@PathVariable Long id) {
-		
 		return temaRepository.findById(id)
 				.map(resposta -> {
 					temaRepository.deleteById(id);
@@ -72,5 +68,4 @@ public class TemaController {
 				})
 				.orElse(ResponseEntity.notFound().build());
 	}
-
 }
